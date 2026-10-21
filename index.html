@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wulff Creek | Building value for discerning investors</title>
+<meta name="description" content="Wulff Creek is a boutique advisory firm that partners with discerning investors to grow assets, expand networks, capture emerging opportunities and preserve wealth.">
+<link rel="icon" href="assets/icon-black.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --burgundy:#801423;
+  --burgundy-hi:#a3182d;
+  --rose:#e0566d;
+  --grey:#58595B;
+  --ink:#0b0b0d;
+  --ink-2:#131316;
+  --paper:#f5f3f1;
+  --line:rgba(255,255,255,.12);
+  --display:'Lexend','Kiona',system-ui,sans-serif;
+  --body:'Inter',system-ui,sans-serif;
+  --ease:cubic-bezier(.2,.7,.1,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--ink);color:#fff;font-family:var(--body);font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1200px,100% - 48px);margin-inline:auto}
+.eyebrow{font-family:var(--display);font-size:.75rem;letter-spacing:.32em;text-transform:uppercase;color:var(--rose);display:inline-flex;align-items:center;gap:14px;font-weight:400}
+.eyebrow::before{content:"";width:36px;height:1px;background:currentColor}
+h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.1;letter-spacing:-.01em}
+
+/* progress + cursor glow */
+.progress{position:fixed;inset:0 0 auto 0;height:3px;z-index:200;background:linear-gradient(90deg,var(--burgundy),var(--rose));transform-origin:left;transform:scaleX(0)}
+.glow{position:fixed;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:1;left:0;top:0;background:radial-gradient(circle,rgba(160,24,45,.22),transparent 65%);transform:translate(-50%,-50%);transition:opacity .4s;opacity:0;mix-blend-mode:screen}
+
+/* header */
+header{position:fixed;inset:0 0 auto 0;z-index:100;transition:background .4s,padding .4s,backdrop-filter .4s,transform .4s var(--ease);padding:26px 0}
+header.scrolled{background:rgba(11,11,13,.72);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);padding:14px 0;border-bottom:1px solid var(--line)}
+header.hide{transform:translateY(-100%)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.nav .logo img{height:38px;width:auto;transition:height .4s}
+header.scrolled .logo img{height:32px}
+.nav ul{display:flex;gap:38px;list-style:none}
+.nav ul a{font-family:var(--display);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;position:relative;padding:6px 0;opacity:.85;transition:opacity .3s}
+.nav ul a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--rose);transform:scaleX(0);transform-origin:right;transition:transform .45s var(--ease)}
+.nav ul a:hover{opacity:1}.nav ul a:hover::after{transform:scaleX(1);transform-origin:left}
+.burger{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer;position:relative}
+.burger span{position:absolute;left:10px;right:10px;height:1.5px;background:#fff;transition:.4s var(--ease)}
+.burger span:nth-child(1){top:16px}.burger span:nth-child(2){top:27px}
+.burger.open span:nth-child(1){top:21px;transform:rotate(45deg)}.burger.open span:nth-child(2){top:21px;transform:rotate(-45deg)}
+
+/* buttons */
+.btn{--mx:0px;--my:0px;display:inline-flex;align-items:center;gap:14px;font-family:var(--display);font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;padding:18px 30px;border-radius:100px;border:1px solid transparent;cursor:pointer;position:relative;overflow:hidden;transform:translate(var(--mx),var(--my));transition:transform .25s ease-out,box-shadow .4s,background .4s,color .4s,border-color .4s;isolation:isolate}
+.btn .arr{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.16);transition:transform .45s var(--ease),background .4s;margin:-10px -14px -10px 0}
+.btn .arr svg{width:14px;height:14px}
+.btn:hover .arr{transform:translateX(4px) rotate(-45deg)}
+.btn-primary{background:var(--burgundy);color:#fff;box-shadow:0 10px 40px -10px rgba(160,24,45,.8)}
+.btn-primary::before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.28) 50%,transparent 70%);transform:translateX(-120%);transition:transform .8s var(--ease);z-index:-1}
+.btn-primary:hover::before{transform:translateX(120%)}
+.btn-primary:hover{background:var(--burgundy-hi);box-shadow:0 16px 50px -8px rgba(200,40,70,.85)}
+.btn-ghost{border-color:rgba(255,255,255,.35);color:#fff;background:rgba(255,255,255,.04);backdrop-filter:blur(6px)}
+.btn-ghost:hover{background:#fff;color:var(--ink);border-color:#fff}
+.btn-ghost:hover .arr{background:rgba(0,0,0,.08)}
+.btn-sm{padding:12px 22px;font-size:.72rem}
+.btn-sm .arr{display:none}
+
+/* hero */
+.hero{min-height:100svh;position:relative;display:flex;align-items:center;overflow:hidden;padding:150px 0 110px;isolation:isolate}
+.hero-bg{position:absolute;inset:-8% 0;z-index:-3;background:url(assets/night-bridge.jpg) center/cover no-repeat;will-change:transform;animation:kenburns 26s ease-in-out infinite alternate}
+@keyframes kenburns{from{scale:1.04}to{scale:1.16}}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,rgba(11,11,13,.78) 0%,rgba(11,11,13,.55) 40%,rgba(11,11,13,.95) 100%),radial-gradient(ellipse at 20% 60%,rgba(128,20,35,.45),transparent 60%)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;opacity:.07;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");pointer-events:none}
+.hero h1{font-size:clamp(2.6rem,7.2vw,6.4rem);font-weight:500;letter-spacing:-.025em;max-width:15ch;margin:26px 0 30px}
+.hero h1 .swap{display:inline-block;position:relative;color:transparent;background:linear-gradient(100deg,#fff 0%,var(--rose) 100%);-webkit-background-clip:text;background-clip:text}
+.hero h1 .swap-inner{display:inline-block;transition:transform .7s var(--ease),opacity .7s var(--ease),filter .7s}
+.hero h1 .swap-inner.out{transform:translateY(-40%);opacity:0;filter:blur(8px)}
+.hero h1 .swap-inner.in{transform:translateY(40%);opacity:0;filter:blur(8px)}
+.hero .lede{max-width:56ch;font-size:clamp(1.02rem,1.5vw,1.2rem);color:rgba(255,255,255,.82)}
+.cta-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:44px}
+.scroll-cue{position:absolute;left:50%;bottom:30px;translate:-50% 0;display:flex;flex-direction:column;align-items:center;gap:10px;font-family:var(--display);font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.scroll-cue i{width:1px;height:56px;background:linear-gradient(var(--rose),transparent);animation:drip 2.2s ease-in-out infinite;transform-origin:top}
+@keyframes drip{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+.hero-mark{position:absolute;right:-6vw;bottom:-8vw;width:min(46vw,640px);opacity:.07;z-index:-1;pointer-events:none;animation:float 12s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-24px) rotate(-2deg)}}
+
+/* marquee */
+.marquee{border-block:1px solid var(--line);background:var(--ink-2);overflow:hidden;padding:26px 0;position:relative;z-index:2}
+.track{display:flex;width:max-content;gap:56px;animation:slide 38s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.track span{font-family:var(--display);font-size:clamp(1.3rem,2.6vw,2.2rem);font-weight:300;letter-spacing:.02em;white-space:nowrap;display:flex;align-items:center;gap:56px;color:rgba(255,255,255,.88)}
+.track span::after{content:"";width:12px;height:12px;background:var(--burgundy);transform:rotate(45deg);flex:none}
+.track span:nth-child(even){color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.45)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* sections */
+section{position:relative}
+.pad{padding:clamp(80px,12vw,160px) 0}
+
+/* pitch statement */
+.pitch{background:var(--paper);color:var(--ink);overflow:hidden}
+.pitch .eyebrow{color:var(--burgundy)}
+.pitch-text{font-family:var(--display);font-weight:400;font-size:clamp(1.7rem,3.8vw,3.4rem);line-height:1.22;letter-spacing:-.015em;margin-top:34px;max-width:26ch}
+.pitch-text .w{display:inline-block;opacity:.14;transition:opacity .5s,color .5s}
+.pitch-text .w.on{opacity:1}
+.pitch-text .w.hl.on{color:var(--burgundy)}
+.pitch .bgmark{position:absolute;right:-8%;top:50%;translate:0 -50%;width:min(46vw,620px);opacity:.05;pointer-events:none}
+
+/* intro */
+.intro{background:var(--ink);overflow:hidden}
+.intro-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(40px,7vw,110px);align-items:center}
+.intro h2{font-size:clamp(2rem,4vw,3.4rem);margin:22px 0 28px}
+.intro p{color:rgba(255,255,255,.78);font-size:1.08rem;margin-bottom:22px}
+.intro p:last-of-type{margin-bottom:0}
+.frame{position:relative;border-radius:6px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 40px 80px -30px rgba(0,0,0,.9)}
+.frame img{width:100%;height:118%;object-fit:cover;will-change:transform}
+.frame::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,transparent 40%,rgba(128,20,35,.55))}
+.frame-tag{position:absolute;left:0;bottom:0;z-index:2;background:var(--burgundy);padding:16px 26px;font-family:var(--display);font-size:.7rem;letter-spacing:.24em;text-transform:uppercase}
+.reveal-clip{clip-path:inset(0 0 100% 0);transition:clip-path 1.3s var(--ease)}
+.reveal-clip.in{clip-path:inset(0 0 0 0)}
+
+/* differentiators */
+.diff{background:linear-gradient(180deg,var(--ink) 0%,var(--ink-2) 100%)}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:64px}
+.section-head h2{font-size:clamp(2rem,4.4vw,3.8rem);margin-top:20px;max-width:16ch}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;perspective:1400px}
+.card{position:relative;border-radius:10px;overflow:hidden;min-height:620px;display:flex;flex-direction:column;justify-content:flex-end;padding:140px 36px 36px;border:1px solid var(--line);transform-style:preserve-3d;transition:transform .25s ease-out,border-color .4s;isolation:isolate;background:#000}
+.card .bg{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;transition:transform 1.2s var(--ease),filter .6s;filter:saturate(.85) brightness(.7)}
+.card::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(11,11,13,.1) 0%,rgba(11,11,13,.82) 55%,rgba(11,11,13,.97) 100%)}
+.card::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(420px circle at var(--px,50%) var(--py,0%),rgba(224,86,109,.22),transparent 60%);opacity:0;transition:opacity .4s}
+.card:hover{border-color:rgba(224,86,109,.55)}
+.card:hover::after{opacity:1}
+.card:hover .bg{transform:scale(1.08);filter:saturate(1) brightness(.82)}
+.card .num{position:absolute;top:28px;left:36px;font-family:var(--display);font-size:.8rem;letter-spacing:.3em;color:var(--rose)}
+.card .num b{font-weight:300;font-size:3.4rem;display:block;letter-spacing:0;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.55);margin-top:6px}
+.card h3{font-size:1.9rem;margin-bottom:14px;position:relative}
+.card h3::after{content:"";display:block;width:48px;height:2px;background:var(--burgundy);margin-top:16px;transition:width .6s var(--ease),background .4s}
+.card:hover h3::after{width:110px;background:var(--rose)}
+.card p{color:rgba(255,255,255,.82);font-size:.97rem;line-height:1.65}
+
+/* Robb */
+.robb{background:var(--paper);color:var(--ink);overflow:hidden}
+.robb .eyebrow{color:var(--burgundy)}
+.robb-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(40px,7vw,110px);align-items:start}
+.robb-side{position:sticky;top:120px}
+.robb-card{background:var(--ink);color:#fff;border-radius:10px;padding:44px;position:relative;overflow:hidden;isolation:isolate}
+.robb-card::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at 85% 0%,rgba(163,24,45,.7),transparent 55%)}
+.robb-card img.ic{position:absolute;right:-60px;bottom:-60px;width:280px;opacity:.07;z-index:-1}
+.big-num{font-family:var(--display);font-weight:300;font-size:clamp(6rem,12vw,10rem);line-height:.9;letter-spacing:-.04em;background:linear-gradient(180deg,#fff,var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
+.robb-card .lbl{font-family:var(--display);font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:14px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+.chips span{font-family:var(--display);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:9px 15px;border:1px solid rgba(255,255,255,.22);border-radius:100px;transition:background .3s,border-color .3s}
+.chips span:hover{background:var(--burgundy);border-color:var(--burgundy)}
+.robb h2{font-size:clamp(2rem,4vw,3.4rem);margin:22px 0 32px}
+.robb .copy p{font-size:1.1rem;color:#2b2b2e;max-width:62ch}
+.robb .copy p::first-letter{font-family:var(--display);font-size:4.4rem;float:left;line-height:.8;padding:8px 14px 0 0;color:var(--burgundy);font-weight:500}
+.robb .btn-ghost{color:var(--ink);border-color:rgba(0,0,0,.3);background:transparent;margin-top:40px}
+.robb .btn-ghost:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.robb .btn-ghost .arr{background:rgba(0,0,0,.08)}
+
+/* testimonial (hidden until copy arrives) */
+.quote{background:var(--ink-2);text-align:center}
+.quote blockquote{font-family:var(--display);font-weight:300;font-size:clamp(1.5rem,3vw,2.6rem);line-height:1.3;max-width:28ch;margin:30px auto 0;position:relative}
+.quote blockquote::before{content:"\201C";display:block;font-size:7rem;line-height:.6;color:var(--burgundy);height:50px}
+
+/* contact / CTA */
+.contact{overflow:hidden;isolation:isolate;text-align:center}
+.contact .bg{position:absolute;inset:-10% 0;background:url(assets/sunset-interchange.jpg) center/cover no-repeat;z-index:-3;will-change:transform}
+.contact::before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,var(--paper) 0,rgba(11,11,13,.9) 12%,rgba(11,11,13,.7) 50%,rgba(11,11,13,.95) 100%)}
+.contact::before{background:linear-gradient(180deg,rgba(11,11,13,1) 0,rgba(11,11,13,.72) 30%,rgba(60,8,18,.62) 70%,rgba(11,11,13,.96) 100%)}
+.contact h2{font-size:clamp(2.2rem,5.6vw,5rem);max-width:17ch;margin:24px auto 26px;letter-spacing:-.02em}
+.contact p.sub{max-width:52ch;margin:0 auto;color:rgba(255,255,255,.82);font-size:1.1rem}
+.contact .cta-row{justify-content:center}
+.contact form{max-width:760px;margin:60px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:18px;text-align:left}
+.field{position:relative}
+.field.full{grid-column:1/-1}
+.field input,.field textarea{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:26px 18px 10px;color:#fff;font:400 1rem var(--body);outline:none;backdrop-filter:blur(8px);transition:border-color .3s,background .3s}
+.field textarea{min-height:130px;resize:vertical}
+.field label{position:absolute;left:18px;top:17px;font-family:var(--display);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.65);pointer-events:none;transition:.3s var(--ease)}
+.field input:focus,.field textarea:focus{border-color:var(--rose);background:rgba(255,255,255,.1)}
+.field input:focus+label,.field input:not(:placeholder-shown)+label,.field textarea:focus+label,.field textarea:not(:placeholder-shown)+label{top:8px;font-size:.6rem;color:var(--rose)}
+.contact form .btn{justify-self:start}
+.note{grid-column:1/-1;font-size:.8rem;color:rgba(255,255,255,.55)}
+
+/* footer */
+footer{background:#060607;padding:70px 0 40px;border-top:1px solid var(--line)}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap}
+.foot img{height:42px;width:auto}
+.foot ul{display:flex;gap:30px;list-style:none;flex-wrap:wrap}
+.foot ul a{font-family:var(--display);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.7);transition:color .3s}
+.foot ul a:hover{color:var(--rose)}
+.copy-r{margin-top:44px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:rgba(255,255,255,.45);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.to-top{position:fixed;right:24px;bottom:24px;z-index:90;width:52px;height:52px;border-radius:50%;background:var(--burgundy);display:grid;place-items:center;border:0;cursor:pointer;opacity:0;translate:0 20px;pointer-events:none;transition:.4s var(--ease);box-shadow:0 10px 30px -8px rgba(160,24,45,.8)}
+.to-top.show{opacity:1;translate:0 0;pointer-events:auto}
+.to-top:hover{background:var(--burgundy-hi);transform:translateY(-4px)}
+.to-top svg{width:18px;height:18px}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(44px);transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+.card.rv.in{transition:transform .25s ease-out,border-color .4s}
+
+/* responsive */
+@media(max-width:980px){
+  .intro-grid,.robb-grid{grid-template-columns:1fr}
+  .cards{grid-template-columns:1fr}.card{min-height:520px}
+  .robb-side{position:static}
+  .frame{aspect-ratio:16/11}
+  .nav ul{position:fixed;inset:0;background:rgba(11,11,13,.97);flex-direction:column;justify-content:center;align-items:center;gap:30px;opacity:0;pointer-events:none;transition:opacity .4s}
+  .nav ul.open{opacity:1;pointer-events:auto}
+  .nav ul a{font-size:1.1rem}
+  .burger{display:block;z-index:120}
+  .nav .btn-sm{display:none}
+  .scroll-cue{display:none}
+}
+@media(max-width:620px){
+  .wrap{width:min(1200px,100% - 32px)}
+  .contact form{grid-template-columns:1fr}
+  .btn{padding:16px 24px}
+  .cta-row .btn{width:100%;justify-content:space-between}
+  .card{padding:140px 28px 28px}.card .num{left:28px}
+  .robb-card{padding:32px}
+  .copy-r,.foot{flex-direction:column;align-items:flex-start}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+  .rv,.reveal-clip{opacity:1;transform:none;clip-path:none}
+  .pitch-text .w{opacity:1}
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="glow" id="glow"></div>
+
+<header id="top-header">
+  <div class="wrap nav">
+    <a href="#home" class="logo" aria-label="Wulff Creek home"><img src="assets/logo-white.png" alt="Wulff Creek" width="900" height="261"></a>
+    <ul id="menu">
+      <li><a href="#about">About</a></li>
+      <li><a href="#approach">Approach</a></li>
+      <li><a href="#robb">Robb</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn btn-primary btn-sm magnetic">Get in touch</a>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg" id="heroBg"></div>
+  <img class="hero-mark" src="assets/icon-white.png" alt="" aria-hidden="true">
+  <div class="wrap">
+    <span class="eyebrow rv">Boutique Advisory</span>
+    <h1 class="rv" style="--d:.1s"><span class="swap"><span class="swap-inner" id="swap">Building</span></span> value for discerning investors</h1>
+    <p class="lede rv" style="--d:.2s">Our clients trust us with their most important strategic challenges. We partner with discerning investors to grow assets, expand networks, capture emerging opportunities and preserve wealth.</p>
+    <div class="cta-row rv" style="--d:.3s">
+      <a href="#contact" class="btn btn-primary magnetic">Start a conversation <span class="arr"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></a>
+      <a href="#about" class="btn btn-ghost magnetic">Who we are <span class="arr"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></a>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>Scroll</span><i></i></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="track" id="track">
+    <span>Grow assets</span><span>Expand networks</span><span>Capture emerging opportunities</span><span>Preserve wealth</span>
+    <span>Grow assets</span><span>Expand networks</span><span>Capture emerging opportunities</span><span>Preserve wealth</span>
+  </div>
+</div>
+
+<!-- PITCH -->
+<section class="pitch pad" id="about">
+  <img class="bgmark" src="assets/icon-black.png" alt="" aria-hidden="true">
+  <div class="wrap">
+    <span class="eyebrow rv">Our clients trust us</span>
+    <p class="pitch-text" id="pitchText">Our clients trust us with their most important strategic challenges. We partner with discerning investors to grow assets, expand networks, capture emerging opportunities and preserve wealth.</p>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro pad">
+  <div class="wrap intro-grid">
+    <div>
+      <span class="eyebrow rv">Who we are</span>
+      <h2 class="rv" style="--d:.1s">A boutique advisory firm that works entrepreneurially.</h2>
+      <p class="rv" style="--d:.15s">We are a boutique advisory firm that works entrepreneurially. Our mission statement is fluid, bespoke, we adapt and tailor our offerings for each of you, to build on your successes and tackle your most strategic challenges.</p>
+      <p class="rv" style="--d:.25s">We’ve spent our careers navigating the intersection of business and geopolitics, living and working in emerging markets, partnering with the most sophisticated global investors, leading fortune 200 companies, and emerging family offices to solve problems, originate opportunities, grow assets and preserve wealth.</p>
+      <div class="cta-row rv" style="--d:.35s"><a href="#approach" class="btn btn-ghost magnetic">Our approach <span class="arr"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></a></div>
+    </div>
+    <div class="frame reveal-clip" id="frame1">
+      <img src="assets/gold-glass.jpg" alt="Professional checking her phone in front of a glass tower" loading="lazy" data-parallax="0.08">
+      <div class="frame-tag">Fluid · Bespoke</div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENTIATORS -->
+<section class="diff pad" id="approach">
+  <div class="wrap">
+    <div class="section-head">
+      <div><span class="eyebrow rv">Our approach</span><h2 class="rv" style="--d:.1s">What sets us apart</h2></div>
+    </div>
+    <div class="cards">
+      <article class="card tilt rv" style="--d:0s">
+        <div class="bg" style="background-image:url(assets/gold-glass.jpg)"></div>
+        <div class="num"><b>01</b></div>
+        <h3>Your Partner</h3>
+        <p>We view ourselves as an extension of your team, a partner in the truest sense. We seek no recognition for our work but are quietly known by leading decision makers globally. Our high-touch approach necessitates working with only a select group of sophisticated clients. Achieving your goals is the only measure of success.</p>
+      </article>
+      <article class="card tilt rv" style="--d:.12s">
+        <div class="bg" style="background-image:url(assets/sunset-interchange.jpg)"></div>
+        <div class="num"><b>02</b></div>
+        <h3>Global &amp; multifaceted</h3>
+        <p>We bring a unique blend of experiences to each engagement, leading with skills derived from strategic advisory, institutional finance, global business development, and entrepreneurial ventures. Working at the intersection of geopolitics and finance, between emerging markets and developed ones we advise decision-makers on complex risks and opportunities facing their businesses.</p>
+      </article>
+      <article class="card tilt rv" style="--d:.24s">
+        <div class="bg" style="background-image:url(assets/fog-towers.jpg)"></div>
+        <div class="num"><b>03</b></div>
+        <h3>Integrity</h3>
+        <p>Our reputation is our greatest asset. Clients trust us with their most sensitive issues, fears and aspirations. They do so because we’ve built a legacy of professionalism where honesty, transparency, confidentiality and discretion are core pillars within our client engagements. Clients deserve candid and actionable guidance, a clear understanding of our process, the utmost care with sensitive business priorities and unwavering protection of their identities.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ROBB -->
+<section class="robb pad" id="robb">
+  <div class="wrap robb-grid">
+    <aside class="robb-side rv">
+      <div class="robb-card">
+        <img class="ic" src="assets/icon-white.png" alt="" aria-hidden="true">
+        <div class="big-num"><span id="count" data-to="25">0</span></div>
+        <div class="lbl">Years of leadership &amp; entrepreneurial experience</div>
+        <div class="chips">
+          <span>Private equity firms</span><span>Corporations</span><span>Sovereigns</span><span>High-net worth individuals</span><span>Family offices</span><span>Pension funds</span>
+        </div>
+      </div>
+    </aside>
+    <div class="copy">
+      <span class="eyebrow rv">About Robb</span>
+      <h2 class="rv" style="--d:.1s">Meet Robb</h2>
+      <p class="rv" style="--d:.15s">Robb brings 25 years of significant and substantive leadership and entrepreneurial experience in building and leading investment, advisory, and technology firms in the U.S. and abroad. An outstanding communicator, Robb is adept at originating and developing powerful relationships with private equity firms, corporations, sovereigns, high-net worth individuals, family offices and pension funds. He has a proven track record securing new business, raising capital, obtaining sustainable revenue streams, restructuring businesses, driving profitability and managing clients. Robb has extensive expertise advising corporations and investors on hedge funds, emerging market risk, geopolitical issues and anti-corruption matters.</p>
+      <a href="#contact" class="btn btn-ghost magnetic rv" style="--d:.25s">Speak with Robb <span class="arr"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL: copy not supplied yet. Remove "hidden", add the quote and the name. -->
+<section class="quote pad" id="testimonial" hidden>
+  <div class="wrap">
+    <span class="eyebrow">Client testimonial</span>
+    <blockquote>PASTE TESTIMONIAL HERE</blockquote>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact pad" id="contact">
+  <div class="bg" data-parallax="0.12"></div>
+  <div class="wrap">
+    <span class="eyebrow rv">Contact</span>
+    <h2 class="rv" style="--d:.1s">Building value for discerning investors</h2>
+    <p class="sub rv" style="--d:.2s">Achieving your goals is the only measure of success.</p>
+    <form class="rv" style="--d:.3s" onsubmit="event.preventDefault();this.querySelector('button').firstChild.textContent='Thank you ';">
+      <div class="field"><input id="n" placeholder=" " required><label for="n">Name</label></div>
+      <div class="field"><input id="e" type="email" placeholder=" " required><label for="e">Email</label></div>
+      <div class="field full"><textarea id="m" placeholder=" "></textarea><label for="m">How can we help?</label></div>
+      <button class="btn btn-primary magnetic" type="submit">Start a conversation <span class="arr"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></button>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <img src="assets/logo-white.png" alt="Wulff Creek" width="900" height="261">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#approach">Approach</a></li>
+        <li><a href="#robb">Robb</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="copy-r"><span>© <span id="yr">2026</span> Wulff Creek. All rights reserved.</span><span>Building value for discerning investors</span></div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Back to top"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.8"><path d="M8 14V2M3 7l5-5 5 5"/></svg></button>
+
+<script>
+(()=>{
+const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+$('#yr').textContent=new Date().getFullYear();
+
+/* header, progress, to-top */
+const header=$('#top-header'),prog=$('#progress'),toTop=$('#toTop');let lastY=0;
+function onScroll(){
+  const y=scrollY,h=document.documentElement.scrollHeight-innerHeight;
+  prog.style.transform=`scaleX(${h?y/h:0})`;
+  header.classList.toggle('scrolled',y>40);
+  header.classList.toggle('hide',y>lastY&&y>500&&!$('#menu').classList.contains('open'));
+  toTop.classList.toggle('show',y>900);lastY=y;
+  if(!reduce){
+    $('#heroBg').style.transform=`translateY(${y*.18}px)`;
+    $$('[data-parallax]').forEach(el=>{const r=el.parentElement.getBoundingClientRect();
+      if(r.bottom<0||r.top>innerHeight)return;
+      el.style.transform=`translateY(${(r.top+r.height/2-innerHeight/2)*-parseFloat(el.dataset.parallax)}px)`});
+  }
+  pitch();
+}
+addEventListener('scroll',onScroll,{passive:true});
+toTop.onclick=()=>scrollTo({top:0});
+
+/* mobile menu */
+const burger=$('#burger'),menu=$('#menu');
+burger.onclick=()=>{const o=menu.classList.toggle('open');burger.classList.toggle('open',o);burger.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':''};
+$$('#menu a').forEach(a=>a.onclick=()=>{menu.classList.remove('open');burger.classList.remove('open');document.body.style.overflow=''});
+
+/* reveal on scroll */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+$$('.rv,.reveal-clip').forEach(el=>io.observe(el));
+
+/* hero word swap */
+const sw=$('#swap'),words=['Building','Originating'];let wi=0;
+if(!reduce)setInterval(()=>{sw.classList.add('out');setTimeout(()=>{wi=(wi+1)%words.length;sw.textContent=words[wi];sw.classList.remove('out');sw.classList.add('in');requestAnimationFrame(()=>requestAnimationFrame(()=>sw.classList.remove('in')))},650)},3600);
+
+/* pitch word-by-word highlight on scroll */
+const pt=$('#pitchText'),hl=['grow assets,','expand networks,','capture emerging opportunities','preserve wealth.'];
+const txt=pt.textContent;pt.textContent='';
+const words2=txt.split(' ');const spans=words2.map((w,i)=>{const s=document.createElement('span');s.className='w';s.textContent=w;pt.append(s,' ');return s});
+const joined=words2.join(' ').toLowerCase();
+hl.forEach(p=>{const idx=joined.indexOf(p);if(idx<0)return;const start=joined.slice(0,idx).split(' ').length-1,n=p.split(' ').length;for(let i=start;i<start+n;i++)spans[i].classList.add('hl')});
+function pitch(){
+  const r=pt.getBoundingClientRect(),p=Math.min(1,Math.max(0,(innerHeight*.85-r.top)/(r.height+innerHeight*.25)));
+  const on=Math.round(p*spans.length*1.15);spans.forEach((s,i)=>s.classList.toggle('on',i<on||reduce));
+}
+
+/* counter */
+const c=$('#count');
+new IntersectionObserver((es,o)=>es.forEach(e=>{if(!e.isIntersecting)return;o.disconnect();
+  if(reduce){c.textContent=c.dataset.to;return}
+  const to=+c.dataset.to,t0=performance.now();(function f(t){const k=Math.min(1,(t-t0)/1800);c.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(t0)
+}),{threshold:.5}).observe(c);
+
+/* magnetic buttons */
+if(!reduce&&matchMedia('(pointer:fine)').matches){
+  $$('.magnetic').forEach(b=>{
+    b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();b.style.setProperty('--mx',((e.clientX-r.left-r.width/2)*.22)+'px');b.style.setProperty('--my',((e.clientY-r.top-r.height/2)*.35)+'px')});
+    b.addEventListener('mouseleave',()=>{b.style.setProperty('--mx','0px');b.style.setProperty('--my','0px')});
+  });
+  /* card tilt + spotlight */
+  $$('.tilt').forEach(k=>{
+    k.addEventListener('mousemove',e=>{const r=k.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+      k.style.transform=`rotateY(${(x-.5)*8}deg) rotateX(${(.5-y)*8}deg) translateY(-6px)`;k.style.setProperty('--px',x*100+'%');k.style.setProperty('--py',y*100+'%')});
+    k.addEventListener('mouseleave',()=>k.style.transform='');
+  });
+  /* cursor glow */
+  const g=$('#glow');addEventListener('mousemove',e=>{g.style.opacity=1;g.style.left=e.clientX+'px';g.style.top=e.clientY+'px'});
+}
+onScroll();
+})();
+</script>
+</body>
+</html>
