@@ -296,6 +296,8 @@ footer ul.contact-list a:hover{transform:none}
 footer ul.contact-list i{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;flex:none;background:rgba(128,20,35,.08);color:var(--burgundy);transition:background .35s,color .35s}
 footer ul.contact-list i svg{width:18px;height:18px}
 footer ul.contact-list a:hover i{background:var(--burgundy);color:#fff}
+.media:has(.bg.orig)::before{display:none}
+.media .bg.orig,.card:hover .bg.orig{filter:none}
 /* reveal */
 .rv{opacity:0;transform:translateY(44px);transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:var(--d,0s)}
 .rv.in{opacity:1;transform:none}
@@ -453,7 +455,7 @@ footer ul.contact-list a:hover i{background:var(--burgundy);color:#fff}
         <p>We bring a unique blend of experiences to each engagement, leading with skills derived from strategic advisory, institutional finance, global business development, and entrepreneurial ventures. Working at the intersection of geopolitics and finance, between emerging markets and developed ones we advise decision-makers on complex risks and opportunities facing their businesses.</p></div>
       </article>
       <article class="card rv" style="--d:.24s">
-        <div class="media tilt"><div class="bg" style="background-image:url(assets/glass-tower.jpg)"></div><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.200 8.200-8 9-4.800-.8-8-4.500-8-9V6z"/><path d="M8.500 12l2.500 2.500 4.500-5"/></svg></div></div>
+        <div class="media tilt"><div class="bg orig" style="background-image:url(assets/integrity-skyline.jpg)"></div><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.200 8.200-8 9-4.800-.8-8-4.500-8-9V6z"/><path d="M8.500 12l2.500 2.500 4.500-5"/></svg></div></div>
         <div class="body"><h3>Integrity</h3>
         <p>Our reputation is our greatest asset. Clients trust us with their most sensitive issues, fears and aspirations. They do so because we’ve built a legacy of professionalism where honesty, transparency, confidentiality and discretion are core pillars within our client engagements. Clients deserve candid and actionable guidance, a clear understanding of our process, the utmost care with sensitive business priorities and unwavering protection of their identities.</p></div>
       </article>
