@@ -30,7 +30,6 @@ img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 .wrap{width:min(1200px,100% - 48px);margin-inline:auto}
 .eyebrow{font-family:var(--display);font-size:.75rem;letter-spacing:.32em;text-transform:uppercase;color:var(--rose);display:inline-flex;align-items:center;gap:14px;font-weight:400}
-.eyebrow::before{content:"";width:36px;height:1px;background:currentColor}
 h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.1;letter-spacing:-.01em}
 
 /* progress + cursor glow */
@@ -74,11 +73,19 @@ header.scrolled .logo img{height:32px}
 @keyframes kenburns{from{scale:1.04}to{scale:1.16}}
 .hero::before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,rgba(11,11,13,.78) 0%,rgba(11,11,13,.55) 40%,rgba(11,11,13,.95) 100%),radial-gradient(ellipse at 20% 60%,rgba(128,20,35,.45),transparent 60%)}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;opacity:.07;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");pointer-events:none}
-.hero h1{font-size:clamp(2.6rem,7.2vw,6.4rem);font-weight:500;letter-spacing:-.025em;max-width:15ch;margin:26px 0 30px}
-.hero h1 .swap{display:inline-block;position:relative;color:transparent;background:linear-gradient(100deg,#fff 0%,var(--rose) 100%);-webkit-background-clip:text;background-clip:text}
-.hero h1 .swap-inner{display:inline-block;transition:transform .7s var(--ease),opacity .7s var(--ease),filter .7s}
-.hero h1 .swap-inner.out{transform:translateY(-40%);opacity:0;filter:blur(8px)}
-.hero h1 .swap-inner.in{transform:translateY(40%);opacity:0;filter:blur(8px)}
+.hero h1{font-size:clamp(2.6rem,7.2vw,6.4rem);font-weight:500;letter-spacing:-.025em;max-width:15ch;margin:26px 0 30px;position:relative}
+.hero h1 .line{display:block}
+.hero h1 .wd{display:inline-block;white-space:nowrap;perspective:600px;padding-bottom:.12em;margin-bottom:-.12em}
+.hero h1 .ch{display:inline-block;transform-origin:50% 100%;animation:rise 1.1s var(--ease) backwards;animation-delay:calc(.35s + var(--i) * 38ms);transition:transform .45s var(--ease),color .3s,text-shadow .4s;will-change:transform}
+@keyframes rise{from{transform:translateY(105%) rotateX(-75deg) scale(.9);opacity:0;filter:blur(12px)}60%{filter:blur(0)}to{transform:none;opacity:1;filter:blur(0)}}
+.hero h1 .ch:hover{transform:translateY(-10px) scale(1.08);color:var(--rose);text-shadow:0 10px 40px rgba(224,86,109,.6)}
+.hero h1 .swap .ch{color:color-mix(in srgb,var(--rose) calc(var(--p) * 1%),#fff);animation:none}
+.hero h1 .swap{display:inline-block;position:relative}
+.hero h1 .swap::after{content:"";position:absolute;left:0;right:.26em;bottom:.02em;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--burgundy),var(--rose));transform-origin:left;animation:underline 1.2s var(--ease) 1.5s backwards}
+@keyframes underline{from{transform:scaleX(0)}}
+@keyframes glow{50%{filter:drop-shadow(0 0 22px rgba(224,86,109,.55))}}
+.hero h1 .spot{position:absolute;inset:-40px;pointer-events:none;background:radial-gradient(260px circle at var(--sx,50%) var(--sy,50%),rgba(255,255,255,.14),transparent 70%);mix-blend-mode:overlay;opacity:0;transition:opacity .4s}
+.hero h1:hover .spot{opacity:1}
 .hero .lede{max-width:56ch;font-size:clamp(1.02rem,1.5vw,1.2rem);color:rgba(255,255,255,.82)}
 .cta-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:44px}
 .scroll-cue{position:absolute;left:50%;bottom:30px;translate:-50% 0;display:flex;flex-direction:column;align-items:center;gap:10px;font-family:var(--display);font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.6)}
@@ -103,11 +110,27 @@ section{position:relative}
 /* pitch statement */
 .pitch{background:var(--paper);color:var(--ink);overflow:hidden}
 .pitch .eyebrow{color:var(--burgundy)}
-.pitch-text{font-family:var(--display);font-weight:400;font-size:clamp(1.7rem,3.8vw,3.4rem);line-height:1.22;letter-spacing:-.015em;margin-top:34px;max-width:26ch}
+.pitch-text{font-family:var(--display);font-weight:400;font-size:clamp(1.7rem,3.8vw,3.4rem);line-height:1.22;letter-spacing:-.015em;margin-top:34px;max-width:28ch}
 .pitch-text .w{display:inline-block;opacity:.14;transition:opacity .5s,color .5s}
 .pitch-text .w.on{opacity:1}
 .pitch-text .w.hl.on{color:var(--burgundy)}
 .pitch .bgmark{position:absolute;right:-8%;top:50%;translate:0 -50%;width:min(46vw,620px);opacity:.05;pointer-events:none}
+
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:clamp(56px,8vw,96px);position:relative;z-index:1}
+.pillar{position:relative;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:34px 30px 30px;min-height:240px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;isolation:isolate;box-shadow:0 20px 40px -30px rgba(0,0,0,.25)}
+.pillar::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(160deg,var(--burgundy-hi),#4a0c16);transform:translateY(101%);transition:transform .6s var(--ease)}
+.pillar.rv.in{transition:transform .5s var(--ease),box-shadow .5s,border-color .4s}
+.pillar:hover{transform:translateY(-8px);border-color:transparent;box-shadow:0 36px 60px -26px rgba(128,20,35,.65)}
+.pillar:hover::before{transform:none}
+.p-icon{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:rgba(128,20,35,.08);color:var(--burgundy);transition:background .5s,color .5s,transform .6s var(--ease)}
+.p-icon svg{width:30px;height:30px;stroke-dasharray:100;stroke-dashoffset:0}
+.pillar:hover .p-icon{background:rgba(255,255,255,.16);color:#fff;transform:rotate(-8deg) scale(1.08)}
+.pillar:hover .p-icon svg{animation:draw 1.1s var(--ease)}
+.pillar h3{font-size:1.4rem;line-height:1.2;margin-top:40px;color:var(--ink);transition:color .4s;max-width:14ch}
+.pillar:hover h3{color:#fff}
+.p-arrow{position:absolute;right:26px;top:30px;width:34px;height:34px;border-radius:50%;border:1px solid rgba(0,0,0,.14);display:grid;place-items:center;color:var(--ink);transition:.5s var(--ease)}
+.p-arrow svg{width:13px;height:13px}
+.pillar:hover .p-arrow{color:#fff;border-color:rgba(255,255,255,.5);transform:rotate(-45deg)}
 
 /* intro */
 .intro{background:var(--ink);overflow:hidden}
@@ -227,6 +250,7 @@ footer ul.plain li::before{content:"";width:7px;height:7px;background:var(--burg
 
 /* responsive */
 @media(max-width:980px){
+  .pillars{grid-template-columns:repeat(2,1fr)}
   .intro-grid,.robb-grid{grid-template-columns:1fr}
   .cards{grid-template-columns:1fr;gap:56px}
   .robb-side{position:static}
@@ -242,6 +266,7 @@ footer ul.plain li::before{content:"";width:7px;height:7px;background:var(--burg
 @media(max-width:620px){
   .wrap{width:min(1200px,100% - 32px)}
   .contact form{grid-template-columns:1fr}
+  .pillars{grid-template-columns:1fr}.pillar{min-height:180px}
   .foot-grid{grid-template-columns:1fr;padding-top:56px}
   .btn{padding:16px 24px}
   .cta-row .btn{width:100%;justify-content:space-between}
@@ -281,7 +306,7 @@ footer ul.plain li::before{content:"";width:7px;height:7px;background:var(--burg
   <img class="hero-mark" src="assets/icon-white.png" alt="" aria-hidden="true">
   <div class="wrap">
     <span class="eyebrow rv">Boutique Advisory</span>
-    <h1 class="rv" style="--d:.1s"><span class="swap"><span class="swap-inner" id="swap">Building</span></span> value for discerning investors</h1>
+    <h1 id="heroTitle" aria-label="Building value for discerning investors">Building value for discerning investors</h1>
     <p class="lede rv" style="--d:.2s">Our clients trust us with their most important strategic challenges. We partner with discerning investors to grow assets, expand networks, capture emerging opportunities and preserve wealth.</p>
     <div class="cta-row rv" style="--d:.3s">
       <a href="#contact" class="btn btn-primary magnetic">Start a conversation <span class="arr"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></a>
@@ -305,6 +330,12 @@ footer ul.plain li::before{content:"";width:7px;height:7px;background:var(--burg
   <div class="wrap">
     <span class="eyebrow rv">Our clients trust us</span>
     <p class="pitch-text" id="pitchText">Our clients trust us with their most important strategic challenges. We partner with discerning investors to grow assets, expand networks, capture emerging opportunities and preserve wealth.</p>
+    <div class="pillars">
+      <a href="#contact" class="pillar rv" style="--d:0.0s"><div class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></div><h3>Grow assets</h3><i class="p-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8h12M9 3l5 5-5 5"/></svg></i></a>
+      <a href="#contact" class="pillar rv" style="--d:0.1s"><div class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2.2"/><circle cx="5" cy="18" r="2.2"/><circle cx="19" cy="18" r="2.2"/><circle cx="12" cy="12" r="1.3"/><path d="M12 7.2v3.5M11 13l-4.5 3.8M13 13l4.5 3.8"/></svg></div><h3>Expand networks</h3><i class="p-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8h12M9 3l5 5-5 5"/></svg></i></a>
+      <a href="#contact" class="pillar rv" style="--d:0.2s"><div class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></div><h3>Capture emerging opportunities</h3><i class="p-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8h12M9 3l5 5-5 5"/></svg></i></a>
+      <a href="#contact" class="pillar rv" style="--d:0.3s"><div class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/><circle cx="12" cy="15.5" r="1"/></svg></div><h3>Preserve wealth</h3><i class="p-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8h12M9 3l5 5-5 5"/></svg></i></a>
+    </div>
   </div>
 </section>
 
@@ -313,7 +344,7 @@ footer ul.plain li::before{content:"";width:7px;height:7px;background:var(--burg
   <div class="wrap intro-grid">
     <div>
       <span class="eyebrow rv">Who we are</span>
-      <h2 class="rv" style="--d:.1s">A boutique advisory firm that works entrepreneurially.</h2>
+    <h2 class="rv" style="--d:.1s">A boutique advisory firm that works entrepreneurially.</h2>
       <p class="rv" style="--d:.15s">We are a boutique advisory firm that works entrepreneurially. Our mission statement is fluid, bespoke, we adapt and tailor our offerings for each of you, to build on your successes and tackle your most strategic challenges.</p>
       <p class="rv" style="--d:.25s">We’ve spent our careers navigating the intersection of business and geopolitics, living and working in emerging markets, partnering with the most sophisticated global investors, leading fortune 200 companies, and emerging family offices to solve problems, originate opportunities, grow assets and preserve wealth.</p>
       <div class="cta-row rv" style="--d:.35s"><a href="#approach" class="btn btn-ghost magnetic">Our approach <span class="arr"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></a></div>
@@ -329,7 +360,8 @@ footer ul.plain li::before{content:"";width:7px;height:7px;background:var(--burg
 <section class="diff pad" id="approach">
   <div class="wrap">
     <div class="section-head">
-      <div><span class="eyebrow rv">Our approach</span><h2 class="rv" style="--d:.1s">What sets us apart</h2></div>
+      <div><span class="eyebrow rv">Our approach</span>
+    <h2 class="rv" style="--d:.1s">What sets us apart</h2></div>
     </div>
     <div class="cards">
       <article class="card rv" style="--d:0s">
@@ -366,7 +398,7 @@ footer ul.plain li::before{content:"";width:7px;height:7px;background:var(--burg
     </aside>
     <div class="copy">
       <span class="eyebrow rv">About Robb</span>
-      <h2 class="rv" style="--d:.1s">Meet Robb</h2>
+    <h2 class="rv" style="--d:.1s">Meet Robb</h2>
       <p class="rv" style="--d:.15s">Robb brings 25 years of significant and substantive leadership and entrepreneurial experience in building and leading investment, advisory, and technology firms in the U.S. and abroad. An outstanding communicator, Robb is adept at originating and developing powerful relationships with private equity firms, corporations, sovereigns, high-net worth individuals, family offices and pension funds. He has a proven track record securing new business, raising capital, obtaining sustainable revenue streams, restructuring businesses, driving profitability and managing clients. Robb has extensive expertise advising corporations and investors on hedge funds, emerging market risk, geopolitical issues and anti-corruption matters.</p>
       <a href="#contact" class="btn btn-ghost magnetic rv" style="--d:.25s">Speak with Robb <span class="arr"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></a>
     </div>
@@ -482,9 +514,26 @@ $$('#menu a').forEach(a=>a.onclick=()=>{menu.classList.remove('open');burger.cla
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15,rootMargin:'0px 0px -6% 0px'});
 $$('.rv,.reveal-clip').forEach(el=>io.observe(el));
 
-/* hero word swap */
-const sw=$('#swap'),words=['Building','Originating'];let wi=0;
-if(!reduce)setInterval(()=>{sw.classList.add('out');setTimeout(()=>{wi=(wi+1)%words.length;sw.textContent=words[wi];sw.classList.remove('out');sw.classList.add('in');requestAnimationFrame(()=>requestAnimationFrame(()=>sw.classList.remove('in')))},650)},3600);
+/* hero headline: letter rise, scramble-decode word swap, cursor spotlight */
+const h1=$('#heroTitle');
+(function(){
+  const parts=['*','value','for','discerning','investors'];
+  h1.textContent='';let i=0;
+  const swapEl=document.createElement('span');swapEl.className='wd swap';swapEl.setAttribute('aria-hidden','true');
+  function paint(str){
+    swapEl.textContent='';
+    [...str].forEach((c,k)=>{const sp=document.createElement('span');sp.className='ch';sp.textContent=c;sp.style.setProperty('--p',Math.round(k/Math.max(1,str.length-1)*100));swapEl.append(sp)});
+  }
+  parts.forEach(w=>{
+    if(w==='*'){h1.append(swapEl);paint('Building');i+=8;h1.append(' ');return}
+    const wd=document.createElement('span');wd.className='wd';wd.setAttribute('aria-hidden','true');
+    [...w].forEach(c=>{const sp=document.createElement('span');sp.className='ch';sp.textContent=c;sp.style.setProperty('--i',i++);wd.append(sp)});
+    h1.append(wd,' ');
+  });
+  swapEl.querySelectorAll('.ch').forEach((c,k)=>c.style.setProperty('--i',k));
+  const spot=document.createElement('span');spot.className='spot';h1.append(spot);
+  h1.addEventListener('mousemove',e=>{const r=h1.getBoundingClientRect();spot.style.setProperty('--sx',e.clientX-r.left+'px');spot.style.setProperty('--sy',e.clientY-r.top+'px')});
+})();
 
 /* pitch word-by-word highlight on scroll */
 const pt=$('#pitchText'),hl=['grow assets,','expand networks,','capture emerging opportunities','preserve wealth.'];
