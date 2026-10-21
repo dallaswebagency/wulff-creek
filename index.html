@@ -119,27 +119,32 @@ section{position:relative}
 .frame img{width:100%;height:118%;object-fit:cover;will-change:transform}
 .frame::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,transparent 40%,rgba(128,20,35,.55))}
 .frame-tag{position:absolute;left:0;bottom:0;z-index:2;background:var(--burgundy);padding:16px 26px;font-family:var(--display);font-size:.7rem;letter-spacing:.24em;text-transform:uppercase}
-.reveal-clip{clip-path:inset(0 0 100% 0);transition:clip-path 1.3s var(--ease)}
-.reveal-clip.in{clip-path:inset(0 0 0 0)}
+.reveal-clip{clip-path:inset(14% 0 14% 0);opacity:0;transition:clip-path 1.3s var(--ease),opacity 1s var(--ease)}
+.reveal-clip.in{clip-path:inset(0);opacity:1}
 
 /* differentiators */
 .diff{background:linear-gradient(180deg,var(--ink) 0%,var(--ink-2) 100%)}
 .section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:64px}
 .section-head h2{font-size:clamp(2rem,4.4vw,3.8rem);margin-top:20px;max-width:16ch}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;perspective:1400px}
-.card{position:relative;border-radius:10px;overflow:hidden;min-height:620px;display:flex;flex-direction:column;justify-content:flex-end;padding:140px 36px 36px;border:1px solid var(--line);transform-style:preserve-3d;transition:transform .25s ease-out,border-color .4s;isolation:isolate;background:#000}
-.card .bg{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;transition:transform 1.2s var(--ease),filter .6s;filter:saturate(.85) brightness(.7)}
-.card::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(11,11,13,.1) 0%,rgba(11,11,13,.82) 55%,rgba(11,11,13,.97) 100%)}
-.card::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(420px circle at var(--px,50%) var(--py,0%),rgba(224,86,109,.22),transparent 60%);opacity:0;transition:opacity .4s}
-.card:hover{border-color:rgba(224,86,109,.55)}
-.card:hover::after{opacity:1}
-.card:hover .bg{transform:scale(1.08);filter:saturate(1) brightness(.82)}
-.card .num{position:absolute;top:28px;left:36px;font-family:var(--display);font-size:.8rem;letter-spacing:.3em;color:var(--rose)}
-.card .num b{font-weight:300;font-size:3.4rem;display:block;letter-spacing:0;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.55);margin-top:6px}
-.card h3{font-size:1.9rem;margin-bottom:14px;position:relative}
-.card h3::after{content:"";display:block;width:48px;height:2px;background:var(--burgundy);margin-top:16px;transition:width .6s var(--ease),background .4s}
-.card:hover h3::after{width:110px;background:var(--rose)}
-.card p{color:rgba(255,255,255,.82);font-size:.97rem;line-height:1.65}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,3.5vw,56px);perspective:1400px}
+.card{display:flex;flex-direction:column;gap:30px}
+.media{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:4/3.1;border:1px solid var(--line);transform-style:preserve-3d;transition:transform .25s ease-out,border-color .4s,box-shadow .5s;isolation:isolate;background:#000}
+.media .bg{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;transition:transform 1.2s var(--ease),filter .6s;filter:saturate(.9) brightness(.8)}
+.media::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(11,11,13,.05) 30%,rgba(11,11,13,.78) 100%)}
+.media::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(380px circle at var(--px,50%) var(--py,0%),rgba(224,86,109,.25),transparent 60%);opacity:0;transition:opacity .4s}
+.card:hover .media{border-color:rgba(224,86,109,.55);box-shadow:0 30px 60px -30px rgba(160,24,45,.7)}
+.card:hover .media::after{opacity:1}
+.card:hover .bg{transform:scale(1.08);filter:saturate(1) brightness(.92)}
+.media .icon{position:absolute;left:26px;bottom:26px;width:68px;height:68px;border-radius:50%;display:grid;place-items:center;color:#fff;border:1px solid rgba(255,255,255,.3);background:rgba(128,20,35,.65);backdrop-filter:blur(8px);box-shadow:0 0 0 0 rgba(224,86,109,.5);transition:transform .6s var(--ease),background .4s,box-shadow .6s}
+.media .icon svg{width:30px;height:30px;stroke-dasharray:90;stroke-dashoffset:0}
+.card:hover .icon{transform:scale(1.1) rotate(-8deg);background:var(--burgundy-hi);box-shadow:0 0 0 12px rgba(224,86,109,.16)}
+.card:hover .icon svg{animation:draw 1.1s var(--ease)}
+@keyframes draw{from{stroke-dashoffset:90}to{stroke-dashoffset:0}}
+.card .body{padding:0 6px;border-top:1px solid var(--line);padding-top:28px;position:relative}
+.card .body::before{content:"";position:absolute;top:-1px;left:6px;width:56px;height:2px;background:var(--burgundy);transition:width .7s var(--ease),background .4s}
+.card:hover .body::before{width:140px;background:var(--rose)}
+.card h3{font-size:1.75rem;margin-bottom:14px}
+.card p{color:rgba(255,255,255,.74);font-size:1rem;line-height:1.75}
 
 /* Robb */
 .robb{background:var(--paper);color:var(--ink);overflow:hidden}
@@ -206,7 +211,7 @@ footer{background:#060607;padding:70px 0 40px;border-top:1px solid var(--line)}
 /* responsive */
 @media(max-width:980px){
   .intro-grid,.robb-grid{grid-template-columns:1fr}
-  .cards{grid-template-columns:1fr}.card{min-height:520px}
+  .cards{grid-template-columns:1fr;gap:56px}
   .robb-side{position:static}
   .frame{aspect-ratio:16/11}
   .nav ul{position:fixed;inset:0;background:rgba(11,11,13,.97);flex-direction:column;justify-content:center;align-items:center;gap:30px;opacity:0;pointer-events:none;transition:opacity .4s}
@@ -221,7 +226,6 @@ footer{background:#060607;padding:70px 0 40px;border-top:1px solid var(--line)}
   .contact form{grid-template-columns:1fr}
   .btn{padding:16px 24px}
   .cta-row .btn{width:100%;justify-content:space-between}
-  .card{padding:140px 28px 28px}.card .num{left:28px}
   .robb-card{padding:32px}
   .copy-r,.foot{flex-direction:column;align-items:flex-start}
 }
@@ -309,23 +313,20 @@ footer{background:#060607;padding:70px 0 40px;border-top:1px solid var(--line)}
       <div><span class="eyebrow rv">Our approach</span><h2 class="rv" style="--d:.1s">What sets us apart</h2></div>
     </div>
     <div class="cards">
-      <article class="card tilt rv" style="--d:0s">
-        <div class="bg" style="background-image:url(assets/gold-glass.jpg)"></div>
-        <div class="num"><b>01</b></div>
-        <h3>Your Partner</h3>
-        <p>We view ourselves as an extension of your team, a partner in the truest sense. We seek no recognition for our work but are quietly known by leading decision makers globally. Our high-touch approach necessitates working with only a select group of sophisticated clients. Achieving your goals is the only measure of success.</p>
+      <article class="card rv" style="--d:0s">
+        <div class="media tilt"><div class="bg" style="background-image:url(assets/gold-glass.jpg)"></div><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16.5 14.2c2.6.3 4.5 2.5 4.5 5.3"/></svg></div></div>
+        <div class="body"><h3>Your Partner</h3>
+        <p>We view ourselves as an extension of your team, a partner in the truest sense. We seek no recognition for our work but are quietly known by leading decision makers globally. Our high-touch approach necessitates working with only a select group of sophisticated clients. Achieving your goals is the only measure of success.</p></div>
       </article>
-      <article class="card tilt rv" style="--d:.12s">
-        <div class="bg" style="background-image:url(assets/sunset-interchange.jpg)"></div>
-        <div class="num"><b>02</b></div>
-        <h3>Global &amp; multifaceted</h3>
-        <p>We bring a unique blend of experiences to each engagement, leading with skills derived from strategic advisory, institutional finance, global business development, and entrepreneurial ventures. Working at the intersection of geopolitics and finance, between emerging markets and developed ones we advise decision-makers on complex risks and opportunities facing their businesses.</p>
+      <article class="card rv" style="--d:.12s">
+        <div class="media tilt"><div class="bg" style="background-image:url(assets/sunset-interchange.jpg)"></div><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></div></div>
+        <div class="body"><h3>Global &amp; multifaceted</h3>
+        <p>We bring a unique blend of experiences to each engagement, leading with skills derived from strategic advisory, institutional finance, global business development, and entrepreneurial ventures. Working at the intersection of geopolitics and finance, between emerging markets and developed ones we advise decision-makers on complex risks and opportunities facing their businesses.</p></div>
       </article>
-      <article class="card tilt rv" style="--d:.24s">
-        <div class="bg" style="background-image:url(assets/fog-towers.jpg)"></div>
-        <div class="num"><b>03</b></div>
-        <h3>Integrity</h3>
-        <p>Our reputation is our greatest asset. Clients trust us with their most sensitive issues, fears and aspirations. They do so because we’ve built a legacy of professionalism where honesty, transparency, confidentiality and discretion are core pillars within our client engagements. Clients deserve candid and actionable guidance, a clear understanding of our process, the utmost care with sensitive business priorities and unwavering protection of their identities.</p>
+      <article class="card rv" style="--d:.24s">
+        <div class="media tilt"><div class="bg" style="background-image:url(assets/fog-towers.jpg)"></div><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.200 8.200-8 9-4.800-.8-8-4.500-8-9V6z"/><path d="M8.500 12l2.500 2.500 4.500-5"/></svg></div></div>
+        <div class="body"><h3>Integrity</h3>
+        <p>Our reputation is our greatest asset. Clients trust us with their most sensitive issues, fears and aspirations. They do so because we’ve built a legacy of professionalism where honesty, transparency, confidentiality and discretion are core pillars within our client engagements. Clients deserve candid and actionable guidance, a clear understanding of our process, the utmost care with sensitive business priorities and unwavering protection of their identities.</p></div>
       </article>
     </div>
   </div>
