@@ -237,6 +237,49 @@ footer ul.plain li::before{content:"";width:7px;height:7px;background:var(--burg
 .to-top:hover{background:var(--burgundy-hi);transform:translateY(-4px)}
 .to-top svg{width:18px;height:18px}
 
+/* light theme overrides */
+.eyebrow{color:var(--burgundy)}
+.hero .eyebrow{color:var(--rose)}
+.intro{background:#fff;color:var(--ink)}
+.intro p{color:#3f3f44}
+.intro .btn-ghost{color:var(--ink);border-color:rgba(0,0,0,.3);background:transparent}
+.intro .btn-ghost:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.intro .btn-ghost .arr{background:rgba(0,0,0,.08)}
+.intro .btn-ghost:hover .arr{background:rgba(255,255,255,.18)}
+.frame{box-shadow:0 40px 80px -30px rgba(128,20,35,.45)}
+.diff{background:linear-gradient(180deg,#f6f1ef,#efe6e4);color:var(--ink)}
+.diff .card p{color:#4a4a4f}
+.card .body{border-top-color:rgba(0,0,0,.12)}
+.media{border-color:rgba(0,0,0,.08);box-shadow:0 30px 50px -34px rgba(0,0,0,.45)}
+.robb{background:#fff}
+.quote{background:#f6f1ef;color:var(--ink)}
+footer{background:#f6f1ef;color:var(--ink);border-top:0}
+.foot-brand p{color:#55555a}
+footer h4{color:var(--burgundy)}
+footer ul a,footer ul.plain li{color:#4a4a4f}
+footer ul a:hover{color:var(--burgundy)}
+.copy-r{border-top-color:rgba(0,0,0,.1);color:#77777c}
+.copy-r a{color:#4a4a4f;border-bottom-color:rgba(128,20,35,.5)}
+.copy-r a:hover{color:var(--burgundy);border-color:var(--burgundy)}
+.foot-mark{opacity:.06}
+
+/* contact split layout */
+.contact{text-align:left}
+.contact .bg{display:none}
+.contact-card{display:grid;grid-template-columns:.95fr 1.05fr;background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 50px 100px -40px rgba(128,20,35,.5);border:1px solid rgba(0,0,0,.06)}
+.contact-side{position:relative;color:#fff;display:flex;isolation:isolate;min-height:640px;overflow:hidden}
+.side-img{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:60% center;transform:scale(1.04);animation:kenburns 26s ease-in-out infinite alternate}
+.contact-side::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(26,5,9,.55) 0%,rgba(74,12,22,.7) 55%,rgba(26,5,9,.92) 100%)}
+.side-in{padding:clamp(28px,4vw,52px);display:flex;flex-direction:column;justify-content:flex-end;gap:0;width:100%}
+.contact .side-in .eyebrow{color:#ff8fa3;margin-bottom:auto}
+.contact .side-in h2{color:#fff;font-size:clamp(2.1rem,3.6vw,3.4rem);margin:40px 0 20px;max-width:12ch;text-align:left}
+.contact .side-in .sub{color:rgba(255,255,255,.85);margin:0;max-width:34ch;font-size:1.05rem}
+.side-list{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+.side-list li{font-family:var(--display);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;padding:9px 15px;border:1px solid rgba(255,255,255,.35);border-radius:100px;backdrop-filter:blur(6px);background:rgba(255,255,255,.08)}
+.contact-card form{max-width:none;margin:0;background:transparent;border:0;border-radius:0;box-shadow:none;padding:clamp(28px,4vw,52px);align-content:center}
+.contact-card form .btn{grid-column:1/-1;white-space:nowrap;margin-top:6px}
+.foot-cta{color:#fff}
+.frame-tag{color:#fff}
 /* reveal */
 .rv{opacity:0;transform:translateY(44px);transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:var(--d,0s)}
 .rv.in{opacity:1;transform:none}
@@ -244,6 +287,7 @@ footer ul.plain li::before{content:"";width:7px;height:7px;background:var(--burg
 
 /* responsive */
 @media(max-width:980px){
+  .contact-card{grid-template-columns:1fr}.contact-side{min-height:420px}
   .pitch-grid{grid-template-columns:1fr}
   .pillars{grid-template-columns:repeat(2,1fr)}
   .intro-grid,.robb-grid{grid-template-columns:1fr}
@@ -408,10 +452,17 @@ footer ul.plain li::before{content:"";width:7px;height:7px;background:var(--burg
 <section class="contact pad" id="contact">
   <div class="bg" data-parallax="0.12"></div>
   <div class="wrap">
-    <span class="eyebrow rv">Contact</span>
-    <h2 class="rv" style="--d:.1s">Building value for discerning investors</h2>
-    <p class="sub rv" style="--d:.2s">Achieving your goals is the only measure of success.</p>
-    <form class="rv" style="--d:.3s" onsubmit="event.preventDefault();var b=this.querySelector('button');b.firstChild.textContent='Thank you, we will be in touch ';">
+    <div class="contact-card rv">
+      <div class="contact-side">
+        <div class="side-img" style="background-image:url(assets/night-bridge.jpg)"></div>
+        <div class="side-in">
+          <span class="eyebrow">Contact</span>
+          <h2>Building value for discerning investors</h2>
+          <p class="sub">Achieving your goals is the only measure of success.</p>
+          <ul class="side-list"><li>Honesty</li><li>Transparency</li><li>Confidentiality</li><li>Discretion</li></ul>
+        </div>
+      </div>
+      <form onsubmit="event.preventDefault();var b=this.querySelector('button');b.firstChild.textContent='Thank you, we will be in touch ';">
       <div class="field"><input id="n" name="name" placeholder=" " required autocomplete="name"><label for="n">Full name</label></div>
       <div class="field"><input id="e" name="email" type="email" placeholder=" " required autocomplete="email"><label for="e">Email</label></div>
       <div class="field"><input id="p" name="phone" type="tel" placeholder=" " autocomplete="tel"><label for="p">Phone number</label></div>
@@ -434,6 +485,7 @@ footer ul.plain li::before{content:"";width:7px;height:7px;background:var(--burg
       <button class="btn btn-primary magnetic" type="submit">Start a conversation <span class="arr"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></button>
       <p class="note">Your details stay confidential. Discretion is a core pillar of every engagement.</p>
     </form>
+    </div>
   </div>
 </section>
 </main>
@@ -448,7 +500,7 @@ footer ul.plain li::before{content:"";width:7px;height:7px;background:var(--burg
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <img src="assets/logo-white.png" alt="Wulff Creek" width="900" height="261">
+        <img src="assets/logo-color.png" alt="Wulff Creek" width="900" height="261">
         <p>A boutique advisory firm that works entrepreneurially, partnering with discerning investors to grow assets, expand networks, capture emerging opportunities and preserve wealth.</p>
       </div>
       <nav aria-label="Explore">
@@ -466,7 +518,7 @@ footer ul.plain li::before{content:"";width:7px;height:7px;background:var(--burg
     </div>
     <div class="copy-r"><span>&copy; <span id="yr">2026</span> Wulff Creek. All rights reserved.</span><span>Building value for discerning investors</span><span>Design by <a href="https://addalittlepinch.com" target="_blank" rel="noopener">addalittlepinch.com</a></span></div>
   </div>
-  <img class="foot-mark" src="assets/icon-white.png" alt="" aria-hidden="true">
+  <img class="foot-mark" src="assets/icon-black.png" alt="" aria-hidden="true">
 </footer>
 
 <button class="to-top" id="toTop" aria-label="Back to top"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.8"><path d="M8 14V2M3 7l5-5 5 5"/></svg></button>
