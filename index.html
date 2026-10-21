@@ -280,6 +280,17 @@ footer ul a:hover{color:var(--burgundy)}
 .contact-card form .btn{grid-column:1/-1;white-space:nowrap;margin-top:6px}
 .foot-cta{color:#fff}
 .frame-tag{color:#fff}
+.foot-grid{grid-template-columns:1.5fr .9fr 1.1fr .9fr 1.3fr}
+.social{display:flex;gap:12px;margin-top:26px}
+.social a{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(0,0,0,.15);color:var(--ink);transition:background .35s,color .35s,transform .45s var(--ease),border-color .35s}
+.social a svg{width:18px;height:18px}
+.social a:hover{background:var(--burgundy);border-color:var(--burgundy);color:#fff;transform:translateY(-4px)}
+footer ul.contact-list{gap:16px}
+footer ul.contact-list a{display:flex;align-items:center;gap:14px;font-size:.98rem}
+footer ul.contact-list a:hover{transform:none}
+footer ul.contact-list i{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;flex:none;background:rgba(128,20,35,.08);color:var(--burgundy);transition:background .35s,color .35s}
+footer ul.contact-list i svg{width:18px;height:18px}
+footer ul.contact-list a:hover i{background:var(--burgundy);color:#fff}
 /* reveal */
 .rv{opacity:0;transform:translateY(44px);transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:var(--d,0s)}
 .rv.in{opacity:1;transform:none}
@@ -300,13 +311,13 @@ footer ul a:hover{color:var(--burgundy)}
   .burger{display:block;z-index:120}
   .nav .btn-sm{display:none}
   .scroll-cue{display:none}
-  .foot-grid{grid-template-columns:1fr 1fr}.foot-brand{grid-column:1/-1}
+  .foot-grid{grid-template-columns:1fr 1fr!important}.foot-brand{grid-column:1/-1}
 }
 @media(max-width:620px){
   .wrap{width:min(1200px,100% - 32px)}
   .contact form{grid-template-columns:1fr}
   .pillars{grid-template-columns:1fr}.pillar{min-height:180px}
-  .foot-grid{grid-template-columns:1fr;padding-top:56px}
+  .foot-grid{grid-template-columns:1fr!important;padding-top:56px}
   .btn{padding:16px 24px}
   .cta-row .btn{width:100%;justify-content:space-between}
   .robb-card{padding:32px}
@@ -502,6 +513,10 @@ footer ul a:hover{color:var(--burgundy)}
       <div class="foot-brand">
         <img src="assets/logo-color.png" alt="Wulff Creek" width="900" height="261">
         <p>A boutique advisory firm that works entrepreneurially, partnering with discerning investors to grow assets, expand networks, capture emerging opportunities and preserve wealth.</p>
+        <div class="social">
+          <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.01 5 2.5 2.5 0 01.01-5zM3 9.75h4v11.5H3zM9.5 9.75h3.8v1.6h.06c.53-1 1.84-2.05 3.8-2.05 4.06 0 4.84 2.67 4.84 6.14v5.8h-4v-5.14c0-1.23-.02-2.8-1.7-2.8-1.71 0-1.97 1.34-1.97 2.72v5.22h-4z"/></svg></a>
+          <a href="#" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.5-3.3h-3.2V7.6c0-.95.4-1.7 1.8-1.7h1.5V3.1c-.3 0-1.3-.1-2.4-.1-2.5 0-4.2 1.5-4.2 4.3v2.4H7.4V13h2.8v8z"/></svg></a>
+        </div>
       </div>
       <nav aria-label="Explore">
         <h4>Explore</h4>
@@ -514,6 +529,13 @@ footer ul a:hover{color:var(--burgundy)}
       <div>
         <h4>Our principles</h4>
         <ul class="plain"><li>Honesty</li><li>Transparency</li><li>Confidentiality</li><li>Discretion</li></ul>
+      </div>
+      <div>
+        <h4>Get in touch</h4>
+        <ul class="contact-list">
+          <li><a href="mailto:email@domain.com"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></i>email@domain.com</a></li>
+          <li><a href="tel:+10000000000"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></i>+1 000 000 0000</a></li>
+        </ul>
       </div>
     </div>
     <div class="copy-r"><span>&copy; <span id="yr">2026</span> Wulff Creek. All rights reserved.</span><span>Building value for discerning investors</span><span>Design by <a href="https://addalittlepinch.com" target="_blank" rel="noopener">addalittlepinch.com</a></span></div>
