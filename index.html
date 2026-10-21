@@ -151,12 +151,11 @@ section{position:relative}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,3.5vw,56px);perspective:1400px}
 .card{display:flex;flex-direction:column;gap:30px}
 .media{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:4/3.1;border:1px solid var(--line);transform-style:preserve-3d;transition:transform .25s ease-out,border-color .4s,box-shadow .5s;isolation:isolate;background:#000}
-.media .bg{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;transition:transform 1.2s var(--ease),filter .6s;filter:saturate(1) brightness(.95)}
-.media::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(11,11,13,0) 40%,rgba(11,11,13,.5) 100%)}
+.media .bg{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;transition:transform 1.2s var(--ease)}
 .media::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(380px circle at var(--px,50%) var(--py,0%),rgba(224,86,109,.25),transparent 60%);opacity:0;transition:opacity .4s}
 .card:hover .media{border-color:rgba(224,86,109,.55);box-shadow:0 30px 60px -30px rgba(160,24,45,.7)}
 .card:hover .media::after{opacity:1}
-.card:hover .bg{transform:scale(1.08);filter:saturate(1.05) brightness(1)}
+.card:hover .bg{transform:scale(1.04)}
 .media .icon{position:absolute;left:26px;bottom:26px;width:68px;height:68px;border-radius:50%;display:grid;place-items:center;color:#fff;border:1px solid rgba(255,255,255,.3);background:rgba(128,20,35,.65);backdrop-filter:blur(8px);box-shadow:0 0 0 0 rgba(224,86,109,.5);transition:transform .6s var(--ease),background .4s,box-shadow .6s}
 .media .icon svg{width:30px;height:30px;stroke-dasharray:90;stroke-dashoffset:0}
 .card:hover .icon{transform:scale(1.1) rotate(-8deg);background:var(--burgundy-hi);box-shadow:0 0 0 12px rgba(224,86,109,.16)}
@@ -255,7 +254,7 @@ footer ul.plain li::before{content:"";width:7px;height:7px;background:var(--burg
 .diff{background:linear-gradient(180deg,#f6f1ef,#efe6e4);color:var(--ink)}
 .diff .card p{color:#4a4a4f}
 .card .body{border-top-color:rgba(0,0,0,.12)}
-.media{border-color:rgba(0,0,0,.08);box-shadow:0 30px 50px -34px rgba(0,0,0,.45)}
+.media{background:#eee;border-color:rgba(0,0,0,.06);box-shadow:0 30px 50px -34px rgba(0,0,0,.45)}
 .robb{background:#fff}
 .quote{background:#f6f1ef;color:var(--ink)}
 footer{background:#f6f1ef;color:var(--ink);border-top:0}
@@ -296,8 +295,6 @@ footer ul.contact-list a:hover{transform:none}
 footer ul.contact-list i{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;flex:none;background:rgba(128,20,35,.08);color:var(--burgundy);transition:background .35s,color .35s}
 footer ul.contact-list i svg{width:18px;height:18px}
 footer ul.contact-list a:hover i{background:var(--burgundy);color:#fff}
-.media:has(.bg.orig)::before{display:none}
-.media .bg.orig,.card:hover .bg.orig{filter:none}
 /* reveal */
 .rv{opacity:0;transform:translateY(44px);transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:var(--d,0s)}
 .rv.in{opacity:1;transform:none}
@@ -455,7 +452,7 @@ footer ul.contact-list a:hover i{background:var(--burgundy);color:#fff}
         <p>We bring a unique blend of experiences to each engagement, leading with skills derived from strategic advisory, institutional finance, global business development, and entrepreneurial ventures. Working at the intersection of geopolitics and finance, between emerging markets and developed ones we advise decision-makers on complex risks and opportunities facing their businesses.</p></div>
       </article>
       <article class="card rv" style="--d:.24s">
-        <div class="media tilt"><div class="bg orig" style="background-image:url(assets/integrity-skyline.jpg)"></div><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.200 8.200-8 9-4.800-.8-8-4.500-8-9V6z"/><path d="M8.500 12l2.500 2.500 4.500-5"/></svg></div></div>
+        <div class="media tilt"><div class="bg" style="background-image:url(assets/integrity-skyline.jpg)"></div><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.200 8.200-8 9-4.800-.8-8-4.500-8-9V6z"/><path d="M8.500 12l2.500 2.500 4.500-5"/></svg></div></div>
         <div class="body"><h3>Integrity</h3>
         <p>Our reputation is our greatest asset. Clients trust us with their most sensitive issues, fears and aspirations. They do so because we’ve built a legacy of professionalism where honesty, transparency, confidentiality and discretion are core pillars within our client engagements. Clients deserve candid and actionable guidance, a clear understanding of our process, the utmost care with sensitive business priorities and unwavering protection of their identities.</p></div>
       </article>
