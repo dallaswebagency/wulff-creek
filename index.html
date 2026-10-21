@@ -328,6 +328,36 @@ footer ul.contact-list a:hover i{background:var(--burgundy);color:#fff}
   .robb-card{padding:32px}
   .copy-r{flex-direction:column;align-items:flex-start}
 }
+/* extra mobile refinements */
+@media(max-width:980px){
+  .hero{padding:130px 0 90px}
+  .section-head{margin-bottom:40px}
+  .robb-card{max-width:560px}
+}
+@media(max-width:620px){
+  .hero{padding:112px 0 70px;min-height:92svh}
+  .pad{padding:72px 0}
+  .pillars{grid-template-columns:1fr 1fr;gap:12px}
+  .pillar{min-height:170px;padding:20px 18px;gap:28px}
+  .pillar h3{font-size:1.05rem}
+  .p-icon{width:46px;height:46px}.p-icon svg{width:22px;height:22px}
+  .p-arrow{right:14px;top:18px;width:28px;height:28px}
+  .pitch-text{margin-bottom:30px}
+  .contact-side{min-height:380px}
+  .foot-grid{grid-template-columns:1fr 1fr!important;gap:36px 24px}
+  .foot-grid>div:nth-child(4),.foot-grid>div:nth-child(5){grid-column:1/-1}
+  footer ul.plain{display:flex;flex-wrap:wrap;gap:10px 22px}
+  .foot-cta-in{padding:40px 0}
+  .foot-cta .btn{width:100%;justify-content:space-between}
+  .robb .copy p::first-letter{font-size:3.6rem}
+  .frame-tag{padding:12px 18px}
+}
+@media(max-width:400px){
+  .btn{font-size:.72rem;letter-spacing:.1em;padding:15px 20px}
+  .contact-card form{padding:24px 18px}
+  .hero h1{font-size:2.5rem}
+  .nav .logo img{height:30px}
+}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
   html{scroll-behavior:auto}
