@@ -94,14 +94,6 @@ header.scrolled .logo img{height:32px}
 .hero-mark{position:absolute;right:-6vw;bottom:-8vw;width:min(46vw,640px);opacity:.07;z-index:-1;pointer-events:none;animation:float 12s ease-in-out infinite}
 @keyframes float{50%{transform:translateY(-24px) rotate(-2deg)}}
 
-/* marquee */
-.marquee{border-block:1px solid var(--line);background:var(--ink-2);overflow:hidden;padding:26px 0;position:relative;z-index:2}
-.track{display:flex;width:max-content;gap:56px;animation:slide 38s linear infinite}
-.marquee:hover .track{animation-play-state:paused}
-.track span{font-family:var(--display);font-size:clamp(1.3rem,2.6vw,2.2rem);font-weight:300;letter-spacing:.02em;white-space:nowrap;display:flex;align-items:center;gap:56px;color:rgba(255,255,255,.88)}
-.track span::after{content:"";width:12px;height:12px;background:var(--burgundy);transform:rotate(45deg);flex:none}
-.track span:nth-child(even){color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.45)}
-@keyframes slide{to{transform:translateX(-50%)}}
 
 /* sections */
 section{position:relative}
@@ -316,14 +308,6 @@ footer ul.plain li::before{content:"";width:7px;height:7px;background:var(--burg
     </div>
   </div>
 </section>
-
-<!-- MARQUEE -->
-<div class="marquee" aria-hidden="true">
-  <div class="track" id="track">
-    <span>Grow assets</span><span>Expand networks</span><span>Capture emerging opportunities</span><span>Preserve wealth</span>
-    <span>Grow assets</span><span>Expand networks</span><span>Capture emerging opportunities</span><span>Preserve wealth</span>
-  </div>
-</div>
 
 <!-- PITCH -->
 <section class="pitch pad" id="about">
