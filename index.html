@@ -237,6 +237,8 @@ footer ul a:hover{color:#fff;transform:translateX(6px)}
 footer ul.plain li{color:rgba(255,255,255,.72);font-size:.95rem;display:flex;align-items:center;gap:12px}
 footer ul.plain li::before{content:"";width:7px;height:7px;background:var(--burgundy);transform:rotate(45deg)}
 .copy-r{margin-top:50px;padding:26px 0 34px;border-top:1px solid var(--line);font-size:.8rem;color:rgba(255,255,255,.45);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;position:relative;z-index:1}
+.copy-r a{color:rgba(255,255,255,.75);border-bottom:1px solid rgba(224,86,109,.6);transition:color .3s,border-color .3s}
+.copy-r a:hover{color:var(--rose);border-color:var(--rose)}
 .foot-mark{position:absolute;right:-60px;bottom:-90px;width:420px;opacity:.05;pointer-events:none}
 .to-top{position:fixed;right:24px;bottom:24px;z-index:90;width:52px;height:52px;border-radius:50%;background:var(--burgundy);display:grid;place-items:center;border:0;cursor:pointer;opacity:0;translate:0 20px;pointer-events:none;transition:.4s var(--ease);box-shadow:0 10px 30px -8px rgba(160,24,45,.8)}
 .to-top.show{opacity:1;translate:0 0;pointer-events:auto}
@@ -313,7 +315,6 @@ footer ul.plain li::before{content:"";width:7px;height:7px;background:var(--burg
       <a href="#about" class="btn btn-ghost magnetic">Who we are <span class="arr"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></a>
     </div>
   </div>
-  <div class="scroll-cue"><span>Scroll</span><i></i></div>
 </section>
 
 <!-- MARQUEE -->
@@ -473,7 +474,7 @@ footer ul.plain li::before{content:"";width:7px;height:7px;background:var(--burg
         <ul class="plain"><li>Honesty</li><li>Transparency</li><li>Confidentiality</li><li>Discretion</li></ul>
       </div>
     </div>
-    <div class="copy-r"><span>&copy; <span id="yr">2026</span> Wulff Creek. All rights reserved.</span><span>Building value for discerning investors</span></div>
+    <div class="copy-r"><span>&copy; <span id="yr">2026</span> Wulff Creek. All rights reserved.</span><span>Building value for discerning investors</span><span>Design by <a href="https://addalittlepinch.com" target="_blank" rel="noopener">addalittlepinch.com</a></span></div>
   </div>
   <img class="foot-mark" src="assets/icon-white.png" alt="" aria-hidden="true">
 </footer>
