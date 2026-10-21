@@ -101,32 +101,30 @@ section{position:relative}
 .pad{padding:clamp(80px,12vw,160px) 0}
 
 /* pitch statement */
-.pitch{background:radial-gradient(ellipse 70% 80% at 85% 10%,rgba(163,24,45,.55),transparent 60%),radial-gradient(ellipse 60% 70% at 0% 100%,rgba(88,89,91,.35),transparent 60%),linear-gradient(180deg,#1a0509 0%,#2b0811 55%,#12060a 100%);color:#fff;overflow:hidden;isolation:isolate}
-.pitch::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.5;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:80px 80px;-webkit-mask-image:radial-gradient(ellipse at 50% 40%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 40%,#000 20%,transparent 75%)}
+.pitch{background:radial-gradient(ellipse 60% 70% at 90% 0%,rgba(163,24,45,.12),transparent 65%),radial-gradient(ellipse 50% 60% at 0% 100%,rgba(88,89,91,.12),transparent 65%),linear-gradient(180deg,#fdfbfa 0%,#f6ecee 100%);color:var(--ink);overflow:hidden;isolation:isolate}
+.pitch::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.6;background-image:linear-gradient(rgba(128,20,35,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(128,20,35,.06) 1px,transparent 1px);background-size:80px 80px;-webkit-mask-image:radial-gradient(ellipse at 50% 40%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 40%,#000 20%,transparent 75%)}
+.pitch .eyebrow{color:var(--burgundy)}
 .pitch .bgmark{position:absolute;left:-6%;bottom:-18%;width:min(44vw,600px);opacity:.05;pointer-events:none;z-index:-1}
 .pitch-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(40px,6vw,100px);align-items:center}
 .pitch-text{font-family:var(--serif);font-weight:400;font-size:clamp(1.55rem,2.9vw,2.6rem);line-height:1.25;letter-spacing:-.012em;margin:26px 0 40px}
-.pitch-text .w{display:inline-block;opacity:.22;transition:opacity .5s,color .5s}
+.pitch-text .w{display:inline-block;opacity:.2;transition:opacity .5s,color .5s}
 .pitch-text .w.on{opacity:1}
-.pitch-text .w.hl.on{color:#ff8fa3}
-.btn-light{background:#fff;color:var(--burgundy)}
-.btn-light .arr{background:rgba(128,20,35,.12)}
-.btn-light:hover{background:var(--ink);color:#fff}
+.pitch-text .w.hl.on{color:var(--burgundy)}
 .pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;position:relative;z-index:1}
-.pillar{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:46px;min-height:220px;padding:28px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);overflow:hidden;isolation:isolate;color:#fff}
-.pillar::before{content:"";position:absolute;inset:0;z-index:-1;background:#fff;transform:translateY(101%);transition:transform .6s var(--ease)}
+.pillar{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:46px;min-height:220px;padding:28px;border-radius:16px;background:#fff;border:1px solid rgba(128,20,35,.1);box-shadow:0 24px 48px -32px rgba(128,20,35,.35);overflow:hidden;isolation:isolate;color:var(--ink)}
+.pillar::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(160deg,var(--burgundy-hi),#4a0c16);transform:translateY(101%);transition:transform .6s var(--ease)}
 .pillar.rv.in{transition:transform .5s var(--ease),box-shadow .5s,border-color .4s}
-.pillar:hover{transform:translateY(-8px);border-color:#fff;box-shadow:0 30px 60px -24px rgba(0,0,0,.8)}
+.pillar:hover{transform:translateY(-8px);border-color:transparent;box-shadow:0 34px 60px -24px rgba(128,20,35,.6)}
 .pillar:hover::before{transform:none}
-.p-icon{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.1);color:#ff8fa3;transition:background .5s,color .5s,transform .6s var(--ease)}
+.p-icon{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;background:rgba(128,20,35,.08);color:var(--burgundy);transition:background .5s,color .5s,transform .6s var(--ease)}
 .p-icon svg{width:28px;height:28px;stroke-dasharray:100;stroke-dashoffset:0}
-.pillar:hover .p-icon{background:rgba(128,20,35,.1);color:var(--burgundy);transform:rotate(-8deg) scale(1.08)}
+.pillar:hover .p-icon{background:rgba(255,255,255,.16);color:#fff;transform:rotate(-8deg) scale(1.08)}
 .pillar:hover .p-icon svg{animation:draw 1.1s var(--ease)}
-.pillar h3{font-size:1.25rem;line-height:1.25;max-width:14ch;transition:color .4s}
-.pillar:hover h3{color:var(--ink)}
-.p-arrow{position:absolute;right:24px;top:28px;width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.3);display:grid;place-items:center;color:#fff;transition:.5s var(--ease)}
+.pillar h3{font-size:1.3rem;line-height:1.25;max-width:14ch;transition:color .4s}
+.pillar:hover h3{color:#fff}
+.p-arrow{position:absolute;right:24px;top:28px;width:34px;height:34px;border-radius:50%;border:1px solid rgba(0,0,0,.14);display:grid;place-items:center;color:var(--ink);transition:.5s var(--ease)}
 .p-arrow svg{width:13px;height:13px}
-.pillar:hover .p-arrow{color:var(--burgundy);border-color:rgba(128,20,35,.4);transform:rotate(-45deg)}
+.pillar:hover .p-arrow{color:#fff;border-color:rgba(255,255,255,.5);transform:rotate(-45deg)}
 
 /* intro */
 .intro{background:var(--ink);overflow:hidden}
@@ -320,7 +318,7 @@ footer ul.plain li::before{content:"";width:7px;height:7px;background:var(--burg
       <div>
         <span class="eyebrow rv">Our clients trust us</span>
         <p class="pitch-text" id="pitchText">Our clients trust us with their most important strategic challenges. We partner with discerning investors to grow assets, expand networks, capture emerging opportunities and preserve wealth.</p>
-        <a href="#contact" class="btn btn-light magnetic rv">Start a conversation <span class="arr"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></a>
+        <a href="#contact" class="btn btn-primary magnetic rv">Start a conversation <span class="arr"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></a>
       </div>
       <div class="pillars">
       <a href="#contact" class="pillar rv" style="--d:0.0s"><div class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></div><h3>Grow assets</h3><i class="p-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8h12M9 3l5 5-5 5"/></svg></i></a>
